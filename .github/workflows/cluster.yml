@@ -60,4 +60,4 @@ jobs:
       # Step 5: Deploy Docker Image to EKS Cluster
       - name: Deploy to Amazon EKS
         run: |
-          kubectl apply -f Deployment.yml
+          kubectl apply -f ./app/Deployment.yml
