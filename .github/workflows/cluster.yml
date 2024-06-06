@@ -36,7 +36,15 @@ jobs:
           aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY_ID }}
           aws configure set region ${{ secrets.AWS_REGION }}
-
+     
+      #create a cluster
+      - name: Create Amazon EKS Cluster
+        run: |
+          aws eks create-cluster \
+            --name cluster1 \
+            --role-arn arn:aws:iam::339713099483:role/aws-service-role/eks.amazonaws.com/AWSServiceRoleForAmazonEKS \
+            --resources-vpc-config subnetIds=subnet-0aea3e3f83b5fad7c,securityGroupIds=sg-0b51020b235b0751c
+            
       # Step 4: Configure kubectl
       - name: Configure kubectl
         run: |
