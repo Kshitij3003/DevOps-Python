@@ -28,7 +28,7 @@ jobs:
       # Step 3: Push Docker Image to ECR
       - name: Push Docker Image to ECR
         run: |
-          docker tag -t mayankbisht26/flaskapp:v1 ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/docker-image-repo:latest
+          docker tag mayankbisht26/flaskapp:v1 ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/docker-image-repo:latest
           docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/docker-image-repo:latest
 
       # Step 4: Create an Amazon EKS Cluster
