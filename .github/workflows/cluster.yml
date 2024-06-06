@@ -45,7 +45,13 @@ jobs:
             --role-arn arn:aws:iam::339713099483:role/aws-service-role/eks.amazonaws.com/AWSServiceRoleForAmazonEKS \
             --resources-vpc-config subnetIds=subnet-0aea3e3f83b5fad7c,subnet-0712019727fffb3fe \
             --region ${{ secrets.AWS_REGION }}
-            
+     
+      - name: Wait for Cluster Creation
+        run: |
+          while [[ "$(aws eks describe-cluster --name cluster1 --query 'cluster.status' --output text)" != "ACTIVE" ]]; do
+            sleep 10
+          done
+    
       # Step 4: Configure kubectl
       - name: Configure kubectl
         run: |
