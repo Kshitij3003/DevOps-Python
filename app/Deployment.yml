@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: flaskapp
-        image: mayankbisht26/flaskapp:v1
+        image: ${{ secrets.DOCKER_USERNAME }}/flaskapp:v1
         ports:
         - containerPort: 5000
